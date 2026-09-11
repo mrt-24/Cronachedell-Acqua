@@ -28,8 +28,8 @@ const citta = [
         lat: 45.0703,
         lng: 7.6869,
         pdf: [
-            { codice: "CDA/001", file: "CDA001.pdf" },
-            { codice: "CDA/013", file: "CDA013.pdf" }
+            { codice: "CDA/001", file: "CDA001.pdf", scuola: "Scuola primaria istituto comprensivo Michele Lessona, Torino", classe: "Classe IV Sezione F" },
+            { codice: "CDA/013", file: "CDA013.pdf", scuola: "Scuola primaria istituto comprensivo Michele Lessona, Torino", classe: "Classe IV Sezione A" }
         ]
     },
 
@@ -39,7 +39,7 @@ const citta = [
         lat: 41.1132,
         lng: 13.8937,
         pdf: [
-            { codice: "CDA/002", file: "CDA002.pdf" }
+            { codice: "CDA/002", file: "CDA002.pdf", scuola: "Scuola secondaria di primo grado istituto comprensivo Mondragone 3, Mondragone (CE)", classe: "Classe I Sezione A" }
         ]
     },
 
@@ -49,7 +49,7 @@ const citta = [
         lat: 40.8518,
         lng: 14.2681,
         pdf: [
-            { codice: "CDA/007", file: "CDA007.pdf" }
+            { codice: "CDA/007", file: "CDA007.pdf", scuola: "Scuola secondaria di primo grado istituto comprensivo Alpi Levi, Napoli", classe: "Classe I-II Sezione C" }
         ]
     },
 
@@ -59,7 +59,7 @@ const citta = [
         lat: 40.3781,
         lng: 18.0485,
         pdf: [
-            { codice: "CDA/003", file: "CDA003.pdf" }
+            { codice: "CDA/003", file: "CDA003.pdf", scuola: "Scuola primaria e secondaria di primo grado istituto comprensivo Margherita Hack, Novoli (LE)", classe: "Classe V, I, II, III Sezione CCRR" }
         ]
     },
 
@@ -69,7 +69,7 @@ const citta = [
         lat: 40.5789,
         lng: 17.0379,
         pdf: [
-            { codice: "CDA/006", file: "CDA006.pdf" }
+            { codice: "CDA/006", file: "CDA006.pdf", scuola: "Scuola primaria istituto comprensivo Rodari-Giovanni XXIII, Palagiano (TA)", classe: "Classe IV Sezione A-B" }
         ]
     },
 
@@ -79,7 +79,7 @@ const citta = [
         lat: 39.9597,
         lng: 18.2144,
         pdf: [
-            { codice: "CDA/012", file: "CDA012.pdf" }
+            { codice: "CDA/012", file: "CDA012.pdf", scuola: "Scuola primaria istituto comprensivo Taurisano polo 1 plesso G. Carducci, Taurisano (LE)", classe: "Classe IV Sezione A-B" }
         ]
     },
 
@@ -89,8 +89,8 @@ const citta = [
         lat: 37.9786,
         lng: 12.5578,
         pdf: [
-            { codice: "CDA/004", file: "CDA004.pdf" },
-            { codice: "CDA/005", file: "CDA005.pdf" }
+            { codice: "CDA/004", file: "CDA004.pdf", scuola: "Scuola primaria istituto comprensivo Giovanni XXIII, Paceco (TP)", classe: "Classe IV Sezione C-D" },
+            { codice: "CDA/005", file: "CDA005.pdf", scuola: "Scuola primaria istituto comprensivo Giovanni XXIII, Paceco (TP)", classe: "Classe V" }
         ]
     },
 
@@ -100,9 +100,9 @@ const citta = [
         lat: 37.6439,
         lng: 14.3997,
         pdf: [
-            { codice: "CDA/008", file: "CDA008.pdf" },
-            { codice: "CDA/009", file: "CDA009.pdf" },
-            { codice: "CDA/010", file: "CDA010.pdf" }
+            { codice: "CDA/008", file: "CDA008.pdf", scuola: "Scuola secondaria di primo grado istituto comprensivo Dante Alighieri, Leonforte (EN)", classe: "Classe II Sezione G" },
+            { codice: "CDA/009", file: "CDA009.pdf", scuola: "Scuola secondaria di primo grado istituto comprensivo Dante Alighieri, Leonforte (EN)", classe: "Classe I Sezione D" },
+            { codice: "CDA/010", file: "CDA010.pdf", scuola: "Scuola secondaria di primo grado istituto comprensivo Dante Alighieri, Leonforte (EN)", classe: "Classe II Sezione D" }
         ]
     },
 
@@ -112,7 +112,7 @@ const citta = [
         lat: 37.7833,
         lng: 14.6000,
         pdf: [
-            { codice: "CDA/011", file: "CDA011.pdf" }
+            { codice: "CDA/011", file: "CDA011.pdf", scuola: "Scuola primaria istituto omnicomprensivo don Bosco-Majorana plesso San Michele, Troina (EN)", classe: "Classe IV Sezione F" }
         ]
     }
 ];
@@ -137,7 +137,7 @@ citta.forEach(function(luogo) {
                 target="_blank"
                 rel="noopener"
             >
-                📄 ${documento.codice}
+                📄 ${documento.codice} — ${documento.scuola}, ${documento.classe}
             </a>
             <br>
         `;
@@ -148,17 +148,3 @@ citta.forEach(function(luogo) {
     marker.addTo(map);
     marker.bindPopup(contenuto);
 });
-
-// ------------------------------------------------------
-// LEGENDA (immagine in un angolo della mappa)
-// ------------------------------------------------------
-
-const legenda = L.control({ position: 'bottomright' });
-
-legenda.onAdd = function(map) {
-    const div = L.DomUtil.create('div', 'legenda-mappa');
-    div.innerHTML = `<img src="img/legenda.png" alt="Legenda" style="width: 150px; display: block;">`;
-    return div;
-};
-
-legenda.addTo(map);
