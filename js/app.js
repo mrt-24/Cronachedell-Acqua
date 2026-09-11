@@ -148,3 +148,17 @@ citta.forEach(function(luogo) {
     marker.addTo(map);
     marker.bindPopup(contenuto);
 });
+
+// ------------------------------------------------------
+// LEGENDA (immagine in un angolo della mappa)
+// ------------------------------------------------------
+
+const legenda = L.control({ position: 'bottomright' });
+
+legenda.onAdd = function(map) {
+    const div = L.DomUtil.create('div', 'legenda-mappa');
+    div.innerHTML = `<img src="img/legenda.png" alt="Legenda" style="width: 150px; display: block;">`;
+    return div;
+};
+
+legenda.addTo(map);
