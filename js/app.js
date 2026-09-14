@@ -69,7 +69,16 @@ const citta = [
         lat: 40.5789,
         lng: 17.0379,
         pdf: [
-            { codice: "CDA/006", file: "CDA006.pdf", scuola: "Scuola primaria istituto comprensivo Rodari-Giovanni XXIII, Palagiano (TA)", classe: "Classe IV Sezione A-B" }
+            {
+                codice: "CDA/006",
+                file: "CDA006.pdf",
+                scuola: "Scuola primaria istituto comprensivo Rodari-Giovanni XXIII, Palagiano (TA)",
+                classe: "Classe IV Sezione A-B",
+                video: {
+                    youtube: "https://www.youtube.com/watch?v=G_2-2qwTE50",
+                    file: "CDA006.mp4"
+                }
+            }
         ]
     },
 
@@ -141,6 +150,29 @@ citta.forEach(function(luogo) {
             </a>
             <br>
         `;
+
+        if (documento.video) {
+            contenuto += `
+                <a
+                    class="pdf-link"
+                    href="${documento.video.youtube}"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    ▶️ Guarda il video
+                </a>
+                <a
+                    class="pdf-link"
+                    href="${PDF_BASE_URL}${documento.video.file}"
+                    target="_blank"
+                    rel="noopener"
+                    download
+                >
+                    ⬇️ Scarica video
+                </a>
+                <br>
+            `;
+        }
     });
 
     const marker = L.marker([luogo.lat, luogo.lng]);
