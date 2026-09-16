@@ -139,16 +139,30 @@ citta.forEach(function(luogo) {
     `;
 
     luogo.pdf.forEach(function(documento) {
+        const pdfUrl = `${PDF_BASE_URL}${documento.file}`;
+        const viewerUrl = `https://docs.google.com/viewer?url=${encodeURIComponent(pdfUrl)}&embedded=true`;
+
         contenuto += `
-            <a
-                class="pdf-link"
-                href="${PDF_BASE_URL}${documento.file}"
-                target="_blank"
-                rel="noopener"
-            >
-                📄 ${documento.codice} — ${documento.scuola}, ${documento.classe}
-            </a>
-            <br>
+            <div style="margin-bottom: 6px;">
+                <strong>${documento.codice}</strong> — ${documento.scuola}, ${documento.classe}<br>
+                <a
+                    class="pdf-link"
+                    href="${viewerUrl}"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    👁️ Visualizza online
+                </a>
+                <a
+                    class="pdf-link"
+                    href="${pdfUrl}"
+                    target="_blank"
+                    rel="noopener"
+                    download
+                >
+                    ⬇️ Scarica PDF
+                </a>
+            </div>
         `;
 
         if (documento.video) {
